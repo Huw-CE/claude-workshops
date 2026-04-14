@@ -63,11 +63,12 @@
       z-index: 10;
       display: flex;
       align-items: center;
-      gap: 0.3em;
+      gap: 0;
       pointer-events: none;
       white-space: nowrap;
     }
     .hero-t1,
+    .hero-sep,
     .hero-t2 {
       font-size: clamp(3.5rem, 8vw, 7rem);
       font-weight: 300;
@@ -82,8 +83,8 @@
       background-clip: text;
       animation: grad-move 8s linear infinite;
     }
-    .hero-t1 { padding-right: 0; }
-    .hero-t2 { padding-left: 0; }
+    /* Equal padding either side of × keeps gaps symmetric */
+    .hero-sep { padding: 0 0.28em; }
 
     /* Subheading — lives inside the video, animated to centre on scroll */
     .hero-sub {
@@ -94,7 +95,7 @@
       z-index: 10;
       font-size: clamp(0.52rem, 0.8vw, 0.65rem);
       font-weight: 300;
-      color: rgba(255,255,255,0.28);
+      color: #545454;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       white-space: nowrap;
@@ -221,10 +222,10 @@
 
     .card-content {
       position: absolute;
-      bottom: 0;
+      bottom: clamp(2rem, 5vw, 4rem);
       left: 0;
       right: 0;
-      padding: clamp(1.5rem, 4vw, 3rem);
+      padding: 0 clamp(1.5rem, 4vw, 3rem);
       z-index: 2;
       display: flex;
       flex-direction: column;
@@ -283,7 +284,7 @@
     /* Top-right session number */
     .card-num {
       position: absolute;
-      top: clamp(1rem, 3vw, 2rem);
+      top: clamp(3rem, 7vw, 5.5rem);
       right: clamp(1rem, 3vw, 2rem);
       font-size: clamp(4rem, 10vw, 8rem);
       font-weight: 300;
@@ -469,7 +470,8 @@
 
       <!-- Text that flies apart -->
       <div class="hero-title-wrap" aria-label="CE × AI" aria-hidden="true">
-        <span class="hero-t1">CE ×</span>
+        <span class="hero-t1">CE</span>
+        <span class="hero-sep">×</span>
         <span class="hero-t2">AI</span>
       </div>
 
@@ -680,6 +682,7 @@
     const hero      = document.getElementById('hero');
     const media     = hero.querySelector('.hero-media');
     const t1        = hero.querySelector('.hero-t1');
+    const heroSep   = hero.querySelector('.hero-sep');
     const t2        = hero.querySelector('.hero-t2');
     const heroSub   = hero.querySelector('.hero-sub');
     const heroHint  = hero.querySelector('.hero-scroll-hint');
@@ -721,6 +724,7 @@
 
       const textOpacity = Math.max(0, 1 - p * 2.2);
       t1.style.opacity = textOpacity;
+      heroSep.style.opacity = textOpacity;
       t2.style.opacity = textOpacity;
 
       // Sub rises to centre of video and scales up with it
@@ -752,15 +756,16 @@
       const s = getInitialSize();
       media.style.width  = s.w + 'px';
       media.style.height = s.h + 'px';
-      t1.style.transform = 'translateX(0)';
-      t2.style.transform = 'translateX(0)';
+      t1.style.transform    = 'translateX(0)';
+      heroSep.style.opacity = '1';
+      t2.style.transform    = 'translateX(0)';
     })();
 
     // Wheel handler
     window.addEventListener('wheel', e => {
       if (!locked) return;
       e.preventDefault();
-      progress = Math.max(0, Math.min(1, progress + e.deltaY * 0.001));
+      progress = Math.max(0, Math.min(1, progress + e.deltaY * 0.0005));
       applyProgress(progress);
       window.scrollTo(0, 0);
     }, { passive: false });
@@ -775,7 +780,7 @@
       if (!locked) return;
       e.preventDefault();
       const dy = touchY - e.touches[0].clientY;
-      progress = Math.max(0, Math.min(1, progress + dy * 0.006));
+      progress = Math.max(0, Math.min(1, progress + dy * 0.003));
       touchY = e.touches[0].clientY;
       applyProgress(progress);
       window.scrollTo(0, 0);
