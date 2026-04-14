@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    .page-hero { background: #fff; padding: calc(var(--nav-h) + 5rem) 0 5rem; border-bottom: 1px solid var(--border); }
+    .page-hero { padding: calc(var(--nav-h) + 5rem) 0 5rem; }
     .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: start; }
     .intro-subhead { font-size: 1rem; font-weight: 300; color: var(--text-muted); margin-top: 1.25rem; line-height: 1.75; }
 
@@ -63,7 +63,11 @@
   <main>
 
     <!-- PAGE HERO -->
-    <section class="page-hero" aria-label="Section introduction">
+    <section class="page-hero page-hero-dark" aria-label="Section introduction">
+      <video class="page-hero-video" autoplay muted loop playsinline aria-hidden="true">
+        <source src="Videos/408272_Changing_Particles_Animated_3d_By_Finn_Moeller_Artlist_HD.mp4" type="video/mp4">
+      </video>
+      <div class="page-hero-overlay" aria-hidden="true"></div>
       <div class="container">
         <div class="intro-grid">
           <div>

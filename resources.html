@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    .page-hero { padding: calc(var(--nav-h) + 5rem) 0 5rem; border-bottom: 1px solid var(--border); }
+    .page-hero { padding: calc(var(--nav-h) + 5rem) 0 5rem; }
     .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem,6vw,5rem); align-items: start; }
     .intro-subhead { font-size: 1rem; font-weight: 300; color: var(--text-muted); margin-top: 1.25rem; line-height: 1.75; }
 
@@ -81,12 +81,16 @@
   <main>
 
     <!-- PAGE HERO -->
-    <section class="page-hero" aria-label="Section introduction">
+    <section class="page-hero page-hero-dark" aria-label="Section introduction">
+      <video class="page-hero-video" autoplay muted loop playsinline aria-hidden="true">
+        <source src="Videos/408272_Changing_Particles_Animated_3d_By_Finn_Moeller_Artlist_HD.mp4" type="video/mp4">
+      </video>
+      <div class="page-hero-overlay" aria-hidden="true"></div>
       <div class="container">
         <div class="intro-grid">
           <div>
             <span class="eyebrow-accent reveal">Resources</span>
-            <h1 class="reveal d1">The people actually<br>doing this stuff.</h1>
+            <h1 class="reveal d1">The people doing it.</h1>
           </div>
           <div class="reveal d2">
             <p class="intro-subhead">Skip the LinkedIn hot takes. These are the creators building real workflows with Claude — shipping products, documenting what works, and being honest about what doesn't. Follow these people and you'll know what's worth paying attention to.</p>

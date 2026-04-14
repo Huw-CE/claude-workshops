@@ -10,43 +10,60 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    .page-hero { background: #fff; padding: calc(var(--nav-h) + 5rem) 0 5rem; border-bottom: 1px solid var(--border); }
+    .page-hero { padding: calc(var(--nav-h) + 5rem) 0 5rem; }
 
     /* Two-col intro layout */
     .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: start; }
     .intro-subhead { font-size: 1rem; font-weight: 300; color: var(--text-muted); margin-top: 1.25rem; line-height: 1.75; }
 
-    /* Feature definition list */
+    /* Feature definition list — matches table styling */
     .feature-list {
       margin-top: 2rem;
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       overflow: hidden;
     }
-    .feature-item {
-      padding: 1.5rem 1.75rem;
+    /* Pink header row — contextualises the table below */
+    .feature-list-header {
+      padding: 0.75rem 1.25rem;
+      font-size: 0.67rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: rgba(252,49,187,0.05);
       border-bottom: 1px solid var(--border);
     }
+    .feature-item {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
     .feature-item:last-child { border-bottom: none; }
+    .feature-item:hover { background: var(--surface); }
     .feature-item dt {
-      font-size: 0.9rem;
-      font-weight: 500;
+      display: block;
+      padding: 0.85rem 1.25rem 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 400;
       color: var(--text);
-      margin-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
     }
     .feature-item dd {
-      font-size: 0.9rem;
+      display: block;
+      padding: 0.85rem 1.25rem;
+      font-size: 0.875rem;
       font-weight: 300;
       color: var(--text-muted);
       line-height: 1.75;
       margin: 0;
     }
     .feature-item dd + p {
-      font-size: 0.9rem;
+      padding: 0 1.25rem 0.85rem;
+      font-size: 0.875rem;
       font-weight: 300;
       color: var(--text-muted);
       line-height: 1.75;
-      margin: 0.75rem 0 0;
+      margin: 0;
     }
 
     /* Tips three-up */
@@ -105,12 +122,16 @@
   <main>
 
     <!-- PAGE HERO -->
-    <section class="page-hero" aria-label="Section introduction">
+    <section class="page-hero page-hero-dark" aria-label="Section introduction">
+      <video class="page-hero-video" autoplay muted loop playsinline aria-hidden="true">
+        <source src="Videos/408272_Changing_Particles_Animated_3d_By_Finn_Moeller_Artlist_HD.mp4" type="video/mp4">
+      </video>
+      <div class="page-hero-overlay" aria-hidden="true"></div>
       <div class="container">
         <div class="intro-grid">
           <div>
             <span class="eyebrow-accent reveal">Prompting · 10 min</span>
-            <h1 class="reveal d1">Learn the layout.<br>Then make it yours.</h1>
+            <h1 class="reveal d1">Contextualise,<br>customise, compress.</h1>
           </div>
           <div class="reveal d2">
             <p class="intro-subhead">Before we get into prompting technique, let's get oriented. The desktop app has more going on than it looks. Spend five minutes here and you'll stop missing half the features.</p>
@@ -126,6 +147,7 @@
         <h2 class="reveal d1">Your home base.</h2>
 
         <dl class="feature-list reveal">
+          <div class="feature-list-header">Panel features</div>
           <div class="feature-item">
             <dt>Chats</dt>
             <dd>Every conversation lives here. Claude keeps your history, but don't treat it like memory — each new chat starts fresh unless you're in a Project. Use chats for one-off tasks. Name them if they matter.</dd>
@@ -143,6 +165,12 @@
             <dd>This is where you teach Claude who you are — your role, your preferences, your tone. We'll go deep on this in the Skills session, but for now: open it, read what's there, and add one line about what you do at Charles Elena. It'll immediately improve every response you get.</dd>
           </div>
         </dl>
+
+        <div class="callout callout-demo reveal" style="margin-top:1.5rem;">
+          <span class="callout-lbl">Try it now</span>
+          <h3 class="callout-title">Open Customize and add one line.</h3>
+          <p class="callout-body">Click your name → Customize. Add a single sentence about your role at Charles Elena. Watch what happens to Claude's responses in the next chat.</p>
+        </div>
       </div>
     </section>
 
@@ -153,6 +181,7 @@
         <h2 class="reveal d1">Under the hood.</h2>
 
         <dl class="feature-list reveal">
+          <div class="feature-list-header">Settings overview</div>
           <div class="feature-item">
             <dt>Usage</dt>
             <dd>Shows your message consumption across the billing period. Useful for understanding which model you're burning through fastest, and when to switch down to Sonnet or Haiku to conserve your limit.</dd>
@@ -166,6 +195,12 @@
             <dd>Switching from ChatGPT? Claude can import your ChatGPT memory directly — the preferences, context, and habits you've built up carry over. Worth doing before your first real session if you've been living in ChatGPT.</dd>
           </div>
         </dl>
+
+        <div class="callout callout-demo reveal" style="margin-top:1.5rem;">
+          <span class="callout-lbl">Try it now</span>
+          <h3 class="callout-title">Find the Connectors tab.</h3>
+          <p class="callout-body">Go to Settings → Connectors. Don't connect anything yet — just note what's available. We'll activate these together in the MCP session.</p>
+        </div>
       </div>
     </section>
 
@@ -176,6 +211,7 @@
         <h2 class="reveal d1">More than a text box.</h2>
 
         <dl class="feature-list reveal">
+          <div class="feature-list-header">Chat tools</div>
           <div class="feature-item">
             <dt>Research</dt>
             <dd>Invoke Research mode when you need Claude to go broad before going deep — gathering sources, synthesising information, building a picture before giving you an answer. It takes longer but the output is significantly more considered. Use it for competitive analysis, trend reports, or any brief where you'd normally spend an hour on Google first.</dd>
@@ -186,6 +222,12 @@
             <p>Styles are a good start. In the Skills session, we'll show you how to go further — locking tone, compression level, and output format into reusable skills like Caveman that trigger automatically.</p>
           </div>
         </dl>
+
+        <div class="callout callout-demo reveal" style="margin-top:1.5rem;">
+          <span class="callout-lbl">Try it now</span>
+          <h3 class="callout-title">Run a Research prompt.</h3>
+          <p class="callout-body">Hit the Research button and ask: <em>"What are the most effective AI-powered consumer experiences at live events in 2025?"</em> Compare the depth and structure to a standard response.</p>
+        </div>
       </div>
     </section>
 
