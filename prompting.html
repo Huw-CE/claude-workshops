@@ -16,55 +16,16 @@
     .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: start; }
     .intro-subhead { font-size: 1rem; font-weight: 300; color: var(--text-muted); margin-top: 1.25rem; line-height: 1.75; }
 
-    /* Feature definition list — matches table styling */
-    .feature-list {
-      margin-top: 2rem;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-    }
-    /* Pink header row — contextualises the table below */
-    .feature-list-header {
-      padding: 0.75rem 1.25rem;
-      font-size: 0.67rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+    /* Prompting page tables — three-column layout */
+    .prompting-tbl td:first-child { width: 11rem; min-width: 9rem; }
+    .prompting-tbl td:nth-child(3) {
+      width: 28%;
+      background: rgba(252,49,187,0.02);
+      border-left: 1px solid var(--border);
+      font-style: italic;
       color: var(--text-muted);
-      background: rgba(252,49,187,0.05);
-      border-bottom: 1px solid var(--border);
     }
-    .feature-item {
-      border-bottom: 1px solid var(--border);
-      transition: background 0.2s;
-    }
-    .feature-item:last-child { border-bottom: none; }
-    .feature-item:hover { background: var(--surface); }
-    .feature-item dt {
-      display: block;
-      padding: 0.85rem 1.25rem 0.5rem;
-      font-size: 0.875rem;
-      font-weight: 400;
-      color: var(--text);
-      border-bottom: 1px solid var(--border);
-    }
-    .feature-item dd {
-      display: block;
-      padding: 0.85rem 1.25rem;
-      font-size: 0.875rem;
-      font-weight: 300;
-      color: var(--text-muted);
-      line-height: 1.75;
-      margin: 0;
-    }
-    .feature-item dd + p {
-      padding: 0 1.25rem 0.85rem;
-      font-size: 0.875rem;
-      font-weight: 300;
-      color: var(--text-muted);
-      line-height: 1.75;
-      margin: 0;
-    }
+    .prompting-tbl tbody tr:hover td:nth-child(3) { background: rgba(252,49,187,0.04); }
 
     /* Tips three-up */
     .tips-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
@@ -146,25 +107,39 @@
         <span class="section-chip reveal">The Side Panel</span>
         <h2 class="reveal d1">Your home base.</h2>
 
-        <dl class="feature-list reveal">
-          <div class="feature-list-header">Panel features</div>
-          <div class="feature-item">
-            <dt>Chats</dt>
-            <dd>Every conversation lives here. Claude keeps your history, but don't treat it like memory — each new chat starts fresh unless you're in a Project. Use chats for one-off tasks. Name them if they matter.</dd>
-          </div>
-          <div class="feature-item">
-            <dt>Projects</dt>
-            <dd>Projects are Claude's version of a persistent working relationship. Everything inside a Project shares context — uploaded files, instructions, prior conversations. If you're working on an ongoing client, a campaign, or any multi-session task, it belongs in a Project. Think of it as a dedicated briefing room that Claude never forgets.</dd>
-          </div>
-          <div class="feature-item">
-            <dt>Artifacts</dt>
-            <dd>When Claude produces something substantial — a document, a table, a piece of code, a presentation — it drops it into an Artifact. Artifacts live in a side panel, can be iterated on independently, and exported. If Claude produces something worth keeping, it'll likely end up here automatically. You can also ask Claude to put anything into an Artifact explicitly.</dd>
-          </div>
-          <div class="feature-item">
-            <dt>Customize</dt>
-            <dd>This is where you teach Claude who you are — your role, your preferences, your tone. We'll go deep on this in the Skills session, but for now: open it, read what's there, and add one line about what you do at Charles Elena. It'll immediately improve every response you get.</dd>
-          </div>
-        </dl>
+        <div class="tbl-wrap reveal">
+          <table class="prompting-tbl">
+            <thead>
+              <tr>
+                <th>Panel features</th>
+                <th>What it does</th>
+                <th>How to use it</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Chats</td>
+                <td>Every conversation lives here. Claude keeps your history, but don't treat it like memory — each new chat starts fresh unless you're in a Project. Use chats for one-off tasks. Name them if they matter.</td>
+                <td>Start a new chat and name it "Infosys Expo Brief." Find it again in the sidebar. This is your filing system — use it.</td>
+              </tr>
+              <tr>
+                <td>Projects</td>
+                <td>Projects are Claude's version of a persistent working relationship. Everything inside a Project shares context — uploaded files, instructions, prior conversations. If you're working on an ongoing client, a campaign, or any multi-session task, it belongs in a Project. Think of it as a dedicated briefing room that Claude never forgets.</td>
+                <td>Create a Project called "Charles Elena Studio." Set a system prompt: "You are working with Charles Elena, a Melbourne digital experience agency."</td>
+              </tr>
+              <tr>
+                <td>Artifacts</td>
+                <td>When Claude produces something substantial — a document, a table, a piece of code, a presentation — it drops it into an Artifact. Artifacts live in a side panel, can be iterated on independently, and exported. If Claude produces something worth keeping, it'll likely end up here automatically.</td>
+                <td>Ask Claude to "put this into an Artifact" on your next output. Then try editing it directly in the artifact panel — without re-prompting.</td>
+              </tr>
+              <tr>
+                <td>Customize</td>
+                <td>This is where you teach Claude who you are — your role, your preferences, your tone. We'll go deep on this in the Skills session, but for now: open it, read what's there, and add one line about what you do at Charles Elena.</td>
+                <td>Add: "I'm a designer at Charles Elena in Melbourne. I work on digital experience, brand, and UX." Watch the next response shift.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <div class="callout callout-demo reveal" style="margin-top:1.5rem;">
           <span class="callout-lbl">Try it now</span>
@@ -180,21 +155,34 @@
         <span class="section-chip reveal">Settings Worth Knowing</span>
         <h2 class="reveal d1">Under the hood.</h2>
 
-        <dl class="feature-list reveal">
-          <div class="feature-list-header">Settings overview</div>
-          <div class="feature-item">
-            <dt>Usage</dt>
-            <dd>Shows your message consumption across the billing period. Useful for understanding which model you're burning through fastest, and when to switch down to Sonnet or Haiku to conserve your limit.</dd>
-          </div>
-          <div class="feature-item">
-            <dt>Connectors</dt>
-            <dd>This is where MCP tools live — Figma, Google Drive, Gmail, Calendar, Zapier. We'll connect these properly in the MCP session, but take a look now so you know where to come back to.</dd>
-          </div>
-          <div class="feature-item">
-            <dt>Import memory from other AI providers</dt>
-            <dd>Switching from ChatGPT? Claude can import your ChatGPT memory directly — the preferences, context, and habits you've built up carry over. Worth doing before your first real session if you've been living in ChatGPT.</dd>
-          </div>
-        </dl>
+        <div class="tbl-wrap reveal">
+          <table class="prompting-tbl">
+            <thead>
+              <tr>
+                <th>Settings overview</th>
+                <th>What it does</th>
+                <th>Worth doing</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Usage</td>
+                <td>Shows your message consumption across the billing period. Useful for understanding which model you're burning through fastest, and when to switch down to Sonnet or Haiku to conserve your limit.</td>
+                <td>Check it after today's session to see how many messages the workshop consumed across models. You'll start to feel where the limits are.</td>
+              </tr>
+              <tr>
+                <td>Connectors</td>
+                <td>This is where MCP tools live — Figma, Google Drive, Gmail, Calendar, Zapier. We'll connect these properly in the MCP session, but take a look now so you know where to come back to.</td>
+                <td>Find Figma in the list now. Don't connect yet — but note the path: Settings → Connectors. We'll activate it together later.</td>
+              </tr>
+              <tr>
+                <td>Import memory</td>
+                <td>Switching from ChatGPT? Claude can import your ChatGPT memory directly — the preferences, context, and habits you've built up carry over. Worth doing before your first real session if you've been living in ChatGPT.</td>
+                <td>Do this tonight if you've been using ChatGPT. Your context transfers. Starting Claude cold when you had a trained ChatGPT is leaving value on the table.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <div class="callout callout-demo reveal" style="margin-top:1.5rem;">
           <span class="callout-lbl">Try it now</span>
@@ -210,18 +198,29 @@
         <span class="section-chip reveal">Chat Functions</span>
         <h2 class="reveal d1">More than a text box.</h2>
 
-        <dl class="feature-list reveal">
-          <div class="feature-list-header">Chat tools</div>
-          <div class="feature-item">
-            <dt>Research</dt>
-            <dd>Invoke Research mode when you need Claude to go broad before going deep — gathering sources, synthesising information, building a picture before giving you an answer. It takes longer but the output is significantly more considered. Use it for competitive analysis, trend reports, or any brief where you'd normally spend an hour on Google first.</dd>
-          </div>
-          <div class="feature-item">
-            <dt>Use Style</dt>
-            <dd>Claude can adapt its writing to match a specific voice. You can choose from built-in styles or — and this is the interesting part — you can upload a sample of your own writing and Claude will mirror it. Useful for client copy that needs to sound like a specific person, or for keeping a consistent tone across a campaign.</dd>
-            <p>Styles are a good start. In the Skills session, we'll show you how to go further — locking tone, compression level, and output format into reusable skills like Caveman that trigger automatically.</p>
-          </div>
-        </dl>
+        <div class="tbl-wrap reveal">
+          <table class="prompting-tbl">
+            <thead>
+              <tr>
+                <th>Chat tools</th>
+                <th>What it does</th>
+                <th>Try this</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Research</td>
+                <td>Invoke Research mode when you need Claude to go broad before going deep — gathering sources, synthesising information, building a picture before giving you an answer. It takes longer but the output is significantly more considered. Use it for competitive analysis, trend reports, or any brief where you'd normally spend an hour on Google first.</td>
+                <td>Ask: "Research the top AI-powered consumer experience trends at live events in 2025." Compare the depth, structure, and source quality to a standard response.</td>
+              </tr>
+              <tr>
+                <td>Use Style</td>
+                <td>Claude can adapt its writing to match a specific voice. Choose from built-in styles or upload a sample of your own writing and Claude will mirror it. Useful for client copy that needs to sound like a specific person, or for maintaining a consistent tone across a campaign. In the Skills session we'll go further — locking tone, compression, and format into reusable skills.</td>
+                <td>Paste a paragraph of your own writing and ask: "Match this voice and write a short intro paragraph for an AI experience at a tech expo."</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <div class="callout callout-demo reveal" style="margin-top:1.5rem;">
           <span class="callout-lbl">Try it now</span>
