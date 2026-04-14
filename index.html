@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CE × AI — Workshop Series</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
@@ -62,6 +63,7 @@
       z-index: 10;
       display: flex;
       align-items: center;
+      gap: 0.3em;
       pointer-events: none;
       white-space: nowrap;
     }
@@ -83,21 +85,21 @@
     .hero-t1 { padding-right: 0; }
     .hero-t2 { padding-left: 0; }
 
-    /* Subheading below title */
+    /* Subheading — lives inside the video, animated to centre on scroll */
     .hero-sub {
       position: absolute;
-      top: calc(50% + clamp(2.5rem, 5vw, 4.5rem));
+      top: 50%;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translateX(-50%) translateY(80px);
       z-index: 10;
-      font-size: clamp(0.7rem, 1.3vw, 0.85rem);
+      font-size: clamp(0.52rem, 0.8vw, 0.65rem);
       font-weight: 300;
-      color: rgba(255,255,255,0.82);
-      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.28);
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       white-space: nowrap;
       pointer-events: none;
-      will-change: opacity;
+      will-change: transform;
     }
 
     /* Scroll hint */
@@ -713,15 +715,19 @@
       media.style.boxShadow = `0 40px 120px rgba(0,0,0,${shadowAlpha})`;
 
       // Text flies off
-      const tx = p * 140;
-      t1.style.transform = `translateX(calc(-50% - ${tx}vw))`;
-      t2.style.transform = `translateX(calc(50% + ${tx}vw))`;
+      const tx = p * 150;
+      t1.style.transform = `translateX(-${tx}vw)`;
+      t2.style.transform = `translateX(${tx}vw)`;
 
       const textOpacity = Math.max(0, 1 - p * 2.2);
       t1.style.opacity = textOpacity;
       t2.style.opacity = textOpacity;
 
-      heroSub.style.opacity  = Math.max(0, 1 - p * 2.5);
+      // Sub rises to centre of video and scales up with it
+      const subY = (1 - p) * 80;
+      const subScale = 1 + p * 0.2;
+      heroSub.style.transform = `translateX(-50%) translateY(${subY}px) scale(${subScale})`;
+
       heroHint.style.opacity = Math.max(0, 1 - p * 3);
 
       // Background fades
@@ -734,9 +740,10 @@
         locked = false;
         document.body.classList.remove('locked');
         hero.classList.add('expanded');
-        // position title wrap off screen definitively
         t1.style.transform = 'translateX(-200vw)';
         t2.style.transform = 'translateX(200vw)';
+        // Sub rests at centre of full-screen video
+        heroSub.style.transform = 'translateX(-50%) translateY(0px) scale(1.2)';
       }
     }
 
@@ -745,9 +752,8 @@
       const s = getInitialSize();
       media.style.width  = s.w + 'px';
       media.style.height = s.h + 'px';
-      // Center text elements relative to each other
-      t1.style.transform = 'translateX(-50%)';
-      t2.style.transform = 'translateX(50%)';
+      t1.style.transform = 'translateX(0)';
+      t2.style.transform = 'translateX(0)';
     })();
 
     // Wheel handler
